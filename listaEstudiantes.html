@@ -54,66 +54,66 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                   </div>
                 <div class="modal-body">
-                    <form>
+                    <form id="formActualizar">
                         <input type="hidden" id="id" name="id">
                         <div class="form-group">
-                          <label for="exampleInputEmail1">Identificador</label>
-                          <input type="number" class="form-control" id="identificador" aria-describedby="" placeholder="Ingrese su identificación">
+                          <label for="identificador">Identificador</label>
+                          <input  name="cedula" type="text" class="form-control" id="identificador" aria-describedby="" placeholder="Ingrese su identificación">
                         </div>
                         <div class="form-group">
-                            <label for="exampleInputEmail1">Nombre</label>
-                            <input type="text" class="form-control" id="nombre" aria-describedby="" placeholder="Ingrese su nombre">
+                            <label for="nombre" >Nombre</label>
+                            <input name="nombre" type="text" class="form-control" id="nombre" aria-describedby="" placeholder="Ingrese su nombre">
                           </div>
                           <div class="form-group">
-                            <label for="exampleInputEmail1">Apellido Paterno</label>
-                            <input type="text" class="form-control" id="apellidoP" aria-describedby="" placeholder="Ingrese su apellido paterno">
+                            <label for="apellidoP">Apellido Paterno</label>
+                            <input name="apellidopaterno" type="text" class="form-control" id="apellidoP" aria-describedby="" placeholder="Ingrese su apellido paterno">
                           </div>
                           <div class="form-group">
-                            <label for="exampleInputEmail1">Apellido Materno</label>
-                            <input type="text" class="form-control" id="apellidoM" aria-describedby="" placeholder="Ingrese su apellido materno">
+                            <label for="apellidoM" >Apellido Materno</label>
+                            <input name="apellidomaterno" type="text" class="form-control" id="apellidoM" aria-describedby="" placeholder="Ingrese su apellido materno">
                           </div>
                           <div class="form-group">
-                            <label for="exampleInputEmail1">Género</label>
-                            <input type="text" class="form-control" id="sexo" aria-describedby="" placeholder="Ingrese su género">
+                            <label for="sexo" >Género</label>
+                            <input name="sexo" type="text" class="form-control" id="sexo" aria-describedby="" placeholder="Ingrese su género">
                           </div>
                           <div class="form-group">
-                            <label for="exampleInputEmail1">Fecha de nacimiento</label>
-                            <input type="date" class="form-control" id="fechaN" aria-describedby="" placeholder="Ingrese su fecha de nacimiento">
+                            <label for="fechaN" >Fecha de nacimiento</label>
+                            <input name="fechanacimiento" type="date" class="form-control" id="fechaN" aria-describedby="" placeholder="Ingrese su fecha de nacimiento">
                           </div>
                           <div class="form-group">
-                            <label for="exampleInputEmail1">Dirección</label>
-                            <input type="text" class="form-control" id="direccion" aria-describedby="" placeholder="Ingrese su dirección">
+                            <label for="direccion" >Dirección</label>
+                            <input name="direccion" type="text" class="form-control" id="direccion" aria-describedby="" placeholder="Ingrese su dirección">
                           </div>
                           <div class="form-group">
-                            <label for="exampleInputEmail1">Nacionalidad</label>
-                            <input type="text" class="form-control" id="nacionalidad" aria-describedby="" placeholder="Ingrese su nacionalidad">
+                            <label for="nacionalidad" >Nacionalidad</label>
+                            <input name="nacionalidad" type="text" class="form-control" id="nacionalidad" aria-describedby="" placeholder="Ingrese su nacionalidad">
                           </div>
                           <div class="form-group">
-                            <label for="exampleInputEmail1">Email</label>
-                            <input type="email" class="form-control" id="email" aria-describedby="" placeholder="Ingrese su email">
+                            <label for="email" >Email</label>
+                            <input name="correoelectronico" type="text" class="form-control" id="email" aria-describedby="" placeholder="Ingrese su email">
                           </div>
                           <div class="form-group">
-                            <label for="exampleInputEmail1">Telefono</label>
-                            <input type="number" class="form-control" id="telefono" aria-describedby="" placeholder="Ingrese su telefono">
+                            <label for="correoelectronico" >Telefono</label>
+                            <input name="telefono" type="number" class="form-control" id="telefono" aria-describedby="" placeholder="Ingrese su telefono">
                           </div>
                           <div class="form-group">
-                            <label for="exampleInputEmail1">Telefono Celular</label>
-                            <input type="number" class="form-control" id="telefonoC" aria-describedby="" placeholder="Ingrese su telefono Celular">
+                            <label for="telefonoC" >Telefono Celular</label>
+                            <input name="telefonocelular" type="number" class="form-control" id="telefonoC" aria-describedby="" placeholder="Ingrese su telefono Celular">
                           </div>
+                        
                           <div class="form-group">
-                            <label for="exampleInputEmail1">Telefono</label>
-                            <input type="number" class="form-control" id="telefono" aria-describedby="" placeholder="Ingrese su telefono">
+                            <label for="grupo" >Grupo</label>
+                            <input name="idCarreras" type="number" class="form-control" id="grupo" aria-describedby="" placeholder="Ingrese su grupo">
                           </div>
-                          <div class="form-group">
-                            <label for="exampleInputEmail1">Grupo</label>
-                            <input type="number" class="form-control" id="grupo" aria-describedby="" placeholder="Ingrese su grupo">
+                          <input type="text" id="usuario" name="usuario">
+                          <div>
+                            <button type="submit" class="btn btn-primary">Save changes</button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                           </div>
-                          <input type="hidden" id="usuario" name="usuario">
                       </form>
                 </div>
                 <div class="modal-footer">
-                  <button type="button" class="btn btn-primary">Save changes</button>
-                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                  
                 </div>
               </div>
             </div>

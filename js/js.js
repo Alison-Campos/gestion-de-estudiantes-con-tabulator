@@ -1,11 +1,14 @@
 document.addEventListener('DOMContentLoaded', function()
 {
     var apiUrl = 'https://paginas-web-cr.com/Api/apis/ListaEstudiantes.php'
-    var ApiBorrarEstudiante = "https://paginas-web-cr.com/Api/apis/BorrarEstudiantes.php'"
+    var ApiBorrarEstudiante = 'https://paginas-web-cr.com/Api/apis/BorrarEstudiantes.php';
     var APIActualizarEstudiante = 'https://paginas-web-cr.com/Api/apis/ActualizarEstudiantes.php';
     var modal2 = new bootstrap.Modal(document.getElementById('modal2'));
     var modalEditar = new bootstrap.Modal(document.getElementById('modalEditar'));
     var formActualizar = document.getElementById('formActualizar');
+    var btnEliminar = document.getElementById('btnEliminar');
+    var btnCancel = document.getElementById('btnCancel');
+
     var table = new Tabulator('#tabla-estudiante', {
         columnDefaults:{ /// a todas las columnas
             vertAlign:"middle"
@@ -49,7 +52,7 @@ document.addEventListener('DOMContentLoaded', function()
             title: "Informacion de Trabajo",
             columns: [
                 {title:"Email", field:"correoelectronico", hozAlign:"center", sorter: "string"},
-                {title:"Telefono", field:"telefono", hozAlign:"center", sorter: "number", width: 100 },
+                {title:"Telefono", field:"telefono", hozAlign:"center", sorter: "number", width: 130 },
                 {title:"Usuario", field:"usuario", hozAlign:"center", sorter: "string", width: 100 },
                 {title:"Telefono Celular", visible: true, field:"telefonocelular", hozAlign:"center", sorter: "number" }
             ]
@@ -57,7 +60,7 @@ document.addEventListener('DOMContentLoaded', function()
         },
         {
             title: "Acciones", field: "accion", formatter: function(){
-                return '<button class="btn btn-primary btn-sm btn-edit"> Editar</button> <button id="btn-Eliminar" class="btn btn-danger btn-sm btn-delete">Eliminar</button>';
+                return '<button class="btn btn-success btn-sm btn-edit mr-5"> Editar</button> <button id="btn-Eliminar" class="btn btn-danger btn-sm btn-delete">Eliminar</button>';
                 }, hozAlign: "center", headerSort: false, width: 200
         }
  
@@ -69,19 +72,21 @@ document.addEventListener('DOMContentLoaded', function()
     document.getElementById('tabla-estudiante').addEventListener('click', function (event){
        ///optiene el  elemento que disparo el evento clic
         var target = event.target;
-
-        if(target.classList.contains('btn-delete')){
+        if (target.classList.contains('btn-delete')) {
+            // Obtiene la fila asociada al botón de eliminación
             var row = table.getRow(target.closest('.tabulator-row'));
 
-            //verifica que la fila existe antes de continuar
-            if (row){
+            // Verifica que la fila existe antes de continuar
+            if (row) {
                 var rowData = row.getData();
-                // llamar a la funcion para eliminar datos de la fi;a
+                // Llama a la función para eliminar el estudiante con los datos de la fila
                 abrirEliminar(rowData.nombre);
 
-                
-             }
-        } 
+                btnEliminar.addEventListener('click', function () {
+                    eliminarEstudiante(row, rowData);
+                })
+            }
+        }
 
         if(target.classList.contains('btn-edit')){
             var row = table.getRow(target.closest('.tabulator-row'));
@@ -96,7 +101,7 @@ document.addEventListener('DOMContentLoaded', function()
         } 
     
         });
-
+        
         formActualizar.addEventListener('submit', function(event){
             event.preventDefault();
             // Obtiene la fila actualizada desde la tabla
@@ -112,10 +117,10 @@ document.addEventListener('DOMContentLoaded', function()
                     fechanacimiento: document.getElementById('fechaN').value,
                     sexo: document.getElementById('sexo').value,
                     direccion: document.getElementById('direccion').value,
-                    nacionalidad: document.getElementById('nacionalidad').value,
                     nombre: document.getElementById('nombre').value,
                     apellidopaterno: document.getElementById('apellidoP').value,
                     apellidomaterno: document.getElementById('apellidoM').value,
+                    nacionalidad: document.getElementById('nacionalidad').value,
                     idCarreras: document.getElementById('grupo').value,
                     usuario: document.getElementById('usuario').value,
             };
@@ -123,12 +128,39 @@ document.addEventListener('DOMContentLoaded', function()
             }
         }); 
 
+       
     })
     .catch(error => console.error('Error al cargar los datos desde la API', error));
 
     function abrirEliminar(nombre) {
         document.getElementById('parrafo').innerHTML = `Estas seguro de que deseas eliminar al estudiante ${nombre}?`  
         modal2.show();
+    }
+
+    function eliminarEstudiante(row, rowData) {
+
+        fetch(ApiBorrarEstudiante, {
+            method: 'POST',
+            body: JSON.stringify({ id: rowData.id }),
+        })
+            .then(response => response.json())
+            .then(result => {
+                //console.log('Server Response:', result);
+
+                if (result.data) {
+
+                    row.delete();
+                    console.log('Estudiante eliminado correctamente');
+                    mostrarConfirmacionE();
+                    setTimeout(function () {
+                        window.location.reload();
+                    }, 2000);
+
+                } else {
+                    showErrorDelete();
+                }
+            })
+            .catch(error => console.error('Error en la solicitud de eliminación', error));
     }
 
     function abrirEditar(data) {
@@ -159,10 +191,10 @@ document.addEventListener('DOMContentLoaded', function()
        .then((datosrepuesta) => {    
         if(datosrepuesta.data){
             row.update();
-           mostrarConfirmacion();
+           mostrarConfirmacionA();
            setTimeout(function(){
             window.location.reload();
-           }, 2000);
+           }, 1000);
            
         }else{
             showErrorActualizar();
@@ -176,9 +208,21 @@ document.addEventListener('DOMContentLoaded', function()
         document.getElementById('parrafo').innerHTML = `Ha surgido un error al intentar actualizar el estudiante`  
         modal2.show();
     }
+    function showErrorEliminar(){
+        document.getElementById('parrafo').innerHTML = `Ha surgido un error al intentar eliminar el estudiante`  
+        modal2.show();
+    }
 
-    function mostrarConfirmacion(){
+    function mostrarConfirmacionA(){
+        btnCancel.style.display = "none";
+        btnEliminar.style.display = "none";
         document.getElementById('parrafo').innerHTML = `Estudiante actualizado correctamente`  
+        modal2.show();
+    }
+    function mostrarConfirmacionE(){
+        btnCancel.style.display = "none";
+        btnEliminar.style.display = "none";
+        document.getElementById('parrafo').innerHTML = `Estudiante eliminado con exito`  
         modal2.show();
     }
 })

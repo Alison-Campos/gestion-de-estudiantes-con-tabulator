@@ -54,7 +54,7 @@ document.addEventListener('DOMContentLoaded', function()
                 {title:"Email", field:"correoelectronico", hozAlign:"center", sorter: "string"},
                 {title:"Telefono", field:"telefono", hozAlign:"center", sorter: "number", width: 130 },
                 {title:"Usuario", field:"usuario", hozAlign:"center", sorter: "string", width: 100 },
-                {title:"Telefono Celular", visible: true, field:"telefonocelular", hozAlign:"center", sorter: "number" }
+                {title:"Telefono Celular", field:"telefonocelular", hozAlign:"center", sorter: "number" }
             ]
 
         },
@@ -157,7 +157,7 @@ document.addEventListener('DOMContentLoaded', function()
                     }, 2000);
 
                 } else {
-                    showErrorDelete();
+                    showErrorEliminar();
                 }
             })
             .catch(error => console.error('Error en la solicitud de eliminación', error));

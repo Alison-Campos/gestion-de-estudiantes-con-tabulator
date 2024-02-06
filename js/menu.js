@@ -4,7 +4,7 @@ contenidoMenu.innerHTML +=
 `<nav class="navbar navbar-expand-lg navbar-dark bg-dark text-white">
 <div class="container">
   <a class="navbar-brand" href="#">
-    <img src="Imagenes/logo1.png" alt="" width="70" height="54" class="d-inline-block align-text-top rounded-circle">
+    <img src="img/estudiante.png" alt="" width="65" height="60" class="  ">
   </a>
   <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse"
   data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -12,7 +12,7 @@ contenidoMenu.innerHTML +=
   <span class="navbar-toggler-icon "></span>
   </button>
 
-  <div class=" navbar-collapse text-uppercase collapse d-flex justify-content-center align-items-center" id="navbarSupportedContent">
+  <div class=" navbar-collapse text-uppercase collapse d-flex " id="navbarSupportedContent">
     <ul class="navbar-nav mx-auto">
       <li class="nav-item">
         <a class="nav-link" href="listaEstudiantes.html">
@@ -20,7 +20,7 @@ contenidoMenu.innerHTML +=
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="">
+        <a class="nav-link" href="insertarEstudiante.html">
           Insertar Estudiante
         </a>
       </li>
